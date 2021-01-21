@@ -193,7 +193,6 @@ def decoding_character(morse_character):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
     morse_to_alpha_dict = dict((morse,alpha) for alpha, morse in get_morse_code_dict().items())
-
     return morse_to_alpha_dict[morse_character]
     # ==================================
 
@@ -247,10 +246,8 @@ def decoding_sentence(morse_sentence):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
     morse_arr = morse_sentence.split(' ')
-    print(morse_arr)
     sentense = [decoding_character(morse) if morse else ' ' for morse in morse_arr]
-    print(sentense)
-    return print("".join(sentense))
+    return "".join(sentense)
     # ==================================
 
 
@@ -275,21 +272,15 @@ def encoding_sentence(english_sentence):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
     text_arr = " ".join(get_cleaned_english_sentence(english_sentence).upper().split())
-    morse_arr = [encoding_character(alpha) if alpha != ' ' else ' ' for alpha in text_arr]
-    
-    return print(" ".join(morse_arr))
+    morse_arr = [encoding_character(alpha) if alpha != ' ' else '' for alpha in text_arr]
+    return " ".join(morse_arr)
     # ==================================
 
 
 def main():
     print("Morse Code Program!!")
     # ===Modify codes below=============
-    # print(is_validated_english_sentence("Hello World!"))
-    # print(get_cleaned_english_sentence("Hello World!"))
-    # print(decoding_character("-.-"))
-    # print(encoding_character("N"))
-    # print(decoding_sentence("-.-- --- ..-  .- .-. .  ..-. "))
-    # print(encoding_sentence("Hi! Hi!"))
+
     while True:
         user_input = input("Input your message(H -Help, 0 - Exit): ")
         
@@ -303,12 +294,12 @@ def main():
 
         # 올바른 입력 확인(morse to alpha)
         elif is_validated_morse_code(user_input):
-            decoding_sentence(user_input)
+            print(decoding_sentence(user_input))
             
         # 올바른 입력 확인(alpha to morse)
         elif is_validated_english_sentence(user_input):
             text = get_cleaned_english_sentence(user_input)
-            encoding_sentence(text)
+            print(encoding_sentence(text))
 
         # 잘못된 입력
         else:
